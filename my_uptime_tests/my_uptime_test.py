@@ -29,19 +29,21 @@ class MyUptimeTest(unittest.TestCase):
 						'Platform detection failed!')
 
 	def test_uptime(self):
-		r = re.compile(r'\d+:\d\d ')
+		r = re.compile(r'\d+:\d\d')
 		self._redirect_stdout()
 		my_uptime.uptime()
 		self._restore_stdout()
 		output = self._get_saved_stdout()
 		
 		if self.system == 'Linux':
+			r = re.compile(r'.*\d\d:\d\d.\d+')
 			system_response = ("System in use is %s" % self.system)
 			lines = [line.strip() for line in output.split('\n')]
 			if(len(lines) > 1):
 				self.assertTrue(system_response == lines[0],
 								"System type failed! \n%s !=  %s" % (lines[0] , system_response) )
-				self.assertIsNotNone(r.match(lines[1]))
+				self.assertIsNotNone(r.match(lines[1]),
+					"Uptime check failed on %s" % lines[1])
 			else:
 				self.assertTrue(False, 'Uptime output failed on %s' % self.system)
 		else:
