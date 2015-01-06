@@ -34,10 +34,13 @@ class MyUptimeTest(unittest.TestCase):
 		output = self._get_saved_stdout()
 		
 		if self.system == 'Linux':
-			lines = [line.strip() for lines in output.split('\n')]
-			if(len(line) > 1):
-				self.assertTrue(("System in use is %s" % self.system) is line[0])
-				self.assertTrue('day!' in line[1])
+			system_response = ("System in use is %s" % self.system)
+			lines = [line.strip() for line in output.split('\n')]
+			if(len(lines) > 1):
+				self.assertTrue(system_response == lines[0],
+								"System type failed! \n%s !=  %s" % (lines[0] , system_response) )
+				self.assertTrue('day!' in lines[1],
+								"Uptime did not report!")
 			else:
 				self.assertTrue(False, 'Uptime output failed on %s' % self.system)
 		else:
