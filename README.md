@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/mehmetg/my_uptime.svg?branch=master)](https://travis-ci.org/mehmetg/uptime)
 
-# uptime
+# my_uptime
 
-uptime for linux
+my_ uptime for linux
 
-Test project for jenkins, webhook for jenkins push trigger created.
+Test package. Nothing special here.
 
