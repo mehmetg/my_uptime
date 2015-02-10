@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mehmetg/uptime.svg?branch=master)](https://travis-ci.org/mehmetg/uptime)
+[![Build Status](https://travis-ci.org/mehmetg/my_uptime.svg?branch=master)](https://travis-ci.org/mehmetg/uptime)
 
 # uptime
 
