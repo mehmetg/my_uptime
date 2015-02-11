@@ -4,15 +4,22 @@ import platform
 #
 #
 
-def main():
-	system = platform.system() 
-	print("System in use is %s" % system)
+def get_platform():
+	return platform.system() 
+
+def uptime():
+	system = get_platform()
 	if system == 'Linux':
+		print("System in use is %s" % system)
 		with open('/proc/uptime', 'r') as f:
 		    uptime_seconds = float(f.readline().split()[0])
 		    uptime_string = str(timedelta(seconds = uptime_seconds))
-		    print("Testing the webhook again! Will it work? Sunny days ahead.")
 		print(uptime_string)
+	else:
+		print("%s is not supported!" %system)
+
+def main():
+	uptime()
 
 if __name__ == '__main__':
 	main()
