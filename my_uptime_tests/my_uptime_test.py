@@ -39,7 +39,7 @@ class MyUptimeTest(unittest.TestCase):
 			if(len(lines) > 1):
 				self.assertTrue(system_response == lines[0],
 								"System type failed! \n%s !=  %s" % (lines[0] , system_response) )
-				self.assertTrue('day!' in lines[1],
+				self.assertTrue('day' in lines[1],
 								"Uptime did not report!")
 			else:
 				self.assertTrue(False, 'Uptime output failed on %s' % self.system)
