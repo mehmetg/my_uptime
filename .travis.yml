@@ -15,4 +15,4 @@ install:
 # command to run tests
 script:
   - python -m compileall -f .
-  - python setup test
+  - python setup.py test
