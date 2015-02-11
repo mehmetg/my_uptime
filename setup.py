@@ -45,6 +45,6 @@ setup(	name='my_uptime',
       	},
 		zip_safe=False,
 		test_suite = 'my_uptime_tests',
-		test_require = [],
+		#tests_require = [],
 		#test_loader = '',
 		)

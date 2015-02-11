@@ -3,15 +3,7 @@ import platform
 import sys
 import os
 
-import imp
-
-#######
-module_dir = os.path.split(os.path.abspath(__file__))[0]
-module_dir = os.path.split(module_dir)[0]
-module_file = os.path.join(module_dir, 'my_uptime', 'my_uptime.py')
-#######
-
-my_uptime = imp.load_source('my_uptime', module_file)
+from my_uptime import my_uptime
 
 if sys.version_info.major > 2:
 	from IO import StringIO
@@ -45,7 +37,7 @@ class MyUptimeTest(unittest.TestCase):
 			lines = [line.strip() for lines in output.split('\n')]
 			if(len(line) > 1):
 				self.assertTrue(("System in use is %s" % self.system) is line[0])
-				self.assertTrue('day' in line[1])
+				self.assertTrue('day!' in line[1])
 			else:
 				self.assertTrue(False, 'Uptime output failed on %s' % self.system)
 		else:
