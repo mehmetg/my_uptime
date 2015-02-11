@@ -2,6 +2,7 @@ import unittest
 import platform
 import sys
 import os
+import re
 
 from my_uptime import my_uptime
 
@@ -28,6 +29,7 @@ class MyUptimeTest(unittest.TestCase):
 						'Platform detection failed!')
 
 	def test_uptime(self):
+		r = re.compile(r'\d+:\d\d ')
 		self._redirect_stdout()
 		my_uptime.uptime()
 		self._restore_stdout()
@@ -39,8 +41,7 @@ class MyUptimeTest(unittest.TestCase):
 			if(len(lines) > 1):
 				self.assertTrue(system_response == lines[0],
 								"System type failed! \n%s !=  %s" % (lines[0] , system_response) )
-				self.assertTrue('day' in lines[1],
-								"Uptime did not report!")
+				self.assertIsNotNone(r.match(lines[1]))
 			else:
 				self.assertTrue(False, 'Uptime output failed on %s' % self.system)
 		else:
