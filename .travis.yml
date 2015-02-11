@@ -14,5 +14,6 @@ install:
   - pip install .
 # command to run tests
 script:
+  - my_uptime
   - python -m compileall -f .
   - python setup.py test
