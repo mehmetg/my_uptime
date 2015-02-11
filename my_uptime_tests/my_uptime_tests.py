@@ -3,11 +3,12 @@ import platform
 import sys
 import os
 import re
-
-from my_uptime import my_uptime
+	
+if __name__ != '__main__':
+	from my_uptime import my_uptime
 
 if sys.version_info.major > 2:
-	from IO import StringIO
+	from io import StringIO
 else:
 	from StringIO import StringIO
 
@@ -75,6 +76,16 @@ class MyUptimeTest(unittest.TestCase):
 		return self.my_stdout.truncate(0)
 
 if __name__ == '__main__':
+	import imp
+	
+	#######
+	module_dir = os.path.split(os.path.abspath(__file__))[0]
+	module_dir = os.path.split(module_dir)[0]
+	module_file = os.path.join(module_dir, 'my_uptime', 'my_uptime.py')
+	print(module_file)
+	my_uptime = imp.load_source('my_uptime', module_file)
+	#######
+	
 	suite = unittest.TestSuite()
 	suite.addTest(unittest.makeSuite(MyUptimeTest))
 	unittest.TextTestRunner(verbosity=2).run(suite)
